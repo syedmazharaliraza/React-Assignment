@@ -29,7 +29,7 @@ const Sidebar = () => {
   }, [inView, hasNextPage, fetchNextPage]);
 
   return (
-    <aside className="h-[100vh] w-[300px] overflow-auto">
+    <aside className="h-[100vh] w-[350px] overflow-auto">
       {isLoadingCustomers && (
         <p className="py-4 italic text-center">Loading...</p>
       )}

@@ -1,9 +1,15 @@
-import { UseInfiniteQueryOptions, useInfiniteQuery } from "react-query";
+import {
+  UseInfiniteQueryOptions,
+  UseQueryOptions,
+  useInfiniteQuery,
+  useQuery,
+} from "react-query";
 import {
   IErrorResponse,
   IGetAllCustomerResponsePaginated,
+  IGetCustomerDetailsByIdResponse,
 } from "../../types/server";
-import { getAllCustomers } from "../../api";
+import { getAllCustomers, getCustomerById } from "../../api";
 
 const queryKeys = {
   getAllCustomers: ["getAllCustomers"],
@@ -20,7 +26,10 @@ export const useGetAllCustomerQuery = ({
     IErrorResponse
   >;
 }) => {
-  const getAllCustomersQuery = useInfiniteQuery({
+  const getAllCustomersQuery = useInfiniteQuery<
+    IGetAllCustomerResponsePaginated,
+    IErrorResponse
+  >({
     queryKey: queryKeys.getAllCustomers,
     queryFn: ({ pageParam = 1 }) => getAllCustomers({ pageParam }),
     getNextPageParam: ({ limit, total }) =>
@@ -32,4 +41,26 @@ export const useGetAllCustomerQuery = ({
     ...getAllCustomersQuery,
     data: getAllCustomersQuery.data?.pages.map((page) => page.users).flat(),
   };
+};
+
+export const useGetCustomerDetailsById = ({
+  id,
+  customConfig,
+}: {
+  id: string;
+  customConfig?: UseQueryOptions<
+    IGetCustomerDetailsByIdResponse,
+    IErrorResponse
+  >;
+}) => {
+  const getCustomerDetailsByIdQuery = useQuery<
+    IGetCustomerDetailsByIdResponse,
+    IErrorResponse
+  >({
+    queryKey: queryKeys.getCustomerDetailsById(id),
+    queryFn: () => getCustomerById({ id }),
+    ...customConfig,
+  });
+
+  return getCustomerDetailsByIdQuery;
 };

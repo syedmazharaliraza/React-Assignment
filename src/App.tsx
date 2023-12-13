@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <main className="bg-gray-50 min-h-screen w-full">
+      <main className="bg-gray-50 h-screen overflow-auto w-full ">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:id" element={<CustomerDetailsPage />} />

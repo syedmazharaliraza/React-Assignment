@@ -84,7 +84,7 @@ interface ICustomerDetails {
   userAgent: string;
 }
 
-export interface IGetAllCustomerResponse extends ICustomerDetails {}
+export interface IGetCustomerDetailsByIdResponse extends ICustomerDetails {}
 
 export interface IGetAllCustomerResponsePaginated
   extends IPaginatedResponse<ICustomerDetails, "users"> {}
