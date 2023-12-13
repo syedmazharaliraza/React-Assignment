@@ -11,8 +11,10 @@ const queryKeys = {
 };
 
 export const useGetAllCustomerQuery = ({
+  pageParam,
   customConfig,
 }: {
+  pageParam: number;
   customConfig?: UseInfiniteQueryOptions<
     IGetAllCustomerResponsePaginated,
     IErrorResponse
@@ -21,7 +23,8 @@ export const useGetAllCustomerQuery = ({
   const getAllCustomersQuery = useInfiniteQuery({
     queryKey: queryKeys.getAllCustomers,
     queryFn: ({ pageParam = 1 }) => getAllCustomers({ pageParam }),
-    getNextPageParam: ({ limit, total }) => limit !== total,
+    getNextPageParam: ({ limit, total }) =>
+      limit !== total ? pageParam + 1 : undefined,
     ...customConfig,
   });
 

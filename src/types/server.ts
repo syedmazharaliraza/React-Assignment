@@ -55,7 +55,7 @@ interface Company {
 }
 
 interface ICustomerDetails {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   maidenName: string;

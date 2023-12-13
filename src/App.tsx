@@ -5,12 +5,12 @@ import CustomerDetailsPage from "./pages/CustomerDetails";
 
 const App = () => {
   return (
-    <div>
+    <div className="flex">
       <Sidebar />
-      <main>
+      <main className="bg-gray-50 min-h-screen w-full">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/:customerId" element={<CustomerDetailsPage />} />
+          <Route path="/:id" element={<CustomerDetailsPage />} />
         </Routes>
       </main>
     </div>
