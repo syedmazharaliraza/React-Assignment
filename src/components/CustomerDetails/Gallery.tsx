@@ -16,7 +16,7 @@ const Gallery = () => {
         <img
           src={`https://source.unsplash.com/random/200x200?sig=${idx}&${imageKey}`}
           key={idx}
-          alt="random-image"
+          alt="random"
           loading="lazy"
           className="rounded-lg shadow-lg"
         />
